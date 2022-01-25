@@ -1,5 +1,5 @@
 require('dotenv').config();
-const Joi = require("Joi");
+const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const express = require('express');
 const cors = require('cors')
