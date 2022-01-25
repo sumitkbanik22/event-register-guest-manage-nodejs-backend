@@ -1,5 +1,8 @@
+const dotenv = require('dotenv');
 const HTTPErrors = require('http-errors');
 const HTTPStatuses = require('statuses');
+
+dotenv.config();
 
 class ErrorHandler {
 

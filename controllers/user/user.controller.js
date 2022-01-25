@@ -1,9 +1,12 @@
+const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User, validateUserRegsiter, validateUserLogin } = require('../../models/user.model');
 const successResponse = require('../../utils/successResponse');
 const errorResponse = require('../../utils/errorResponse');
+
+dotenv.config();
 
 class UserController {
 
