@@ -1,8 +1,8 @@
 
 class SuccessResponse {
 
-    async getSuccesMessage(res, data = null) {
-        res.status(200).json({
+    async getSuccessMessage(res, data = null, status=200) {
+        res.status(status).json({
             'status': 'success',
             'response': data ? data : 'Request processed successfully!'
         });

@@ -5,6 +5,7 @@ const _ = require('lodash');
 const { User, validateUserRegsiter, validateUserLogin } = require('../../models/user.model');
 const successResponse = require('../../utils/successResponse');
 const errorResponse = require('../../utils/errorResponse');
+const sendEmail = require('../../utils/sendEmail');
 
 dotenv.config();
 
@@ -30,7 +31,17 @@ class UserController {
                 const salt = await bcrypt.genSalt(10);
                 user.password = await bcrypt.hash(user.password, salt);
                 await user.save();
-                return successResponse.getSuccesMessage(res, _.pick(user, ['firstName', 'lastName', 'email', 'phone', 'password', 'userRole']));
+
+                await sendEmail.sendEmail(
+                    user.email,
+                    'Welcome',
+                    {
+                        name: user.firstName + (user.lastName ? ' ' + user.lastName : '')
+                    },
+                    './templates/welcome.handlebars'
+                );
+
+                return successResponse.getSuccessMessage(res, _.pick(user, ['firstName', 'lastName', 'email', 'phone', 'password', 'userRole']));
             }
 
         } catch(err) {
@@ -61,7 +72,7 @@ class UserController {
             }
             const token = jwt.sign({ _id: user._id }, process.env.jwtSecretKey);
             res.header('x-access-token', token);
-            return successResponse.getSuccesMessage(res, _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'phone', 'userRole']));
+            return successResponse.getSuccessMessage(res, _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'phone', 'userRole']));
 
         } catch(err) {
             next(err);
