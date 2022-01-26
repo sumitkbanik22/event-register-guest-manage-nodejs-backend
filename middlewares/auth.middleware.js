@@ -1,7 +1,4 @@
-const dotenv = require('dotenv');
 const errorResponse = require('../utils/errorResponse');
-
-dotenv.config();
 class AuthMiddleware {
 
     async authenticate(req, res, next) {

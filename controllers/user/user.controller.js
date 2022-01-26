@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
@@ -6,8 +5,6 @@ const { User, validateUserRegsiter, validateUserLogin } = require('../../models/
 const successResponse = require('../../utils/successResponse');
 const errorResponse = require('../../utils/errorResponse');
 const sendEmail = require('../../utils/sendEmail');
-
-dotenv.config();
 
 class UserController {
 

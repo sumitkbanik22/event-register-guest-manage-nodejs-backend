@@ -1,9 +1,6 @@
-const dotenv = require('dotenv');
 const HTTPErrors = require('http-errors');
 const HTTPStatuses = require('statuses');
 const logger = require('morgan');
-
-dotenv.config();
 
 class ErrorHandler {
 
