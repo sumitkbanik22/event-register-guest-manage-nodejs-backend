@@ -12,7 +12,7 @@ class UserController {
 
         try {
 
-            // first validare the request
+            // first validate the request
             const { error } = validateUserRegsiter(req.body);
             if (error) {
                 return errorResponse.getErrorMessage(res, error.details[0].message);
@@ -50,7 +50,7 @@ class UserController {
 
         try {
 
-            // first validare the request
+            // first validate the request
             const { error } = validateUserLogin(req.body);
             if (error) {
                 return errorResponse.getErrorMessage(res, error.details[0].message);
