@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const errorResponse = require('../utils/errorResponse');
 class AuthMiddleware {
 
@@ -5,14 +6,14 @@ class AuthMiddleware {
         
         try {
 
-            const token = req.body.token || req.query.token || req.headers['Authorization'].split(' ')[1] || req.headers['x-access-token'].split(' ')[1];
+            const token = req.body.token || req.query.token || req.headers['authorization'].split(' ')[1] || req.headers['x-access-token'].split(' ')[1];
 
             if (!token) {
                 return errorResponse.getErrorMessage(res, 'A token is required for authentication', 403);
             }
 
             const decoded = jwt.verify(token, process.env.jwtSecretKey);
-            req.user_id = decoded._id;
+            req.userId = decoded._id;
             next();
 
         } catch (err) {
