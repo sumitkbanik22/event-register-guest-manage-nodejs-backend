@@ -10,7 +10,7 @@ class ApplicationOperations {
 
             if (req.userId) { 
 
-                let applications = await Application.find({ eveeventCreatorIdntId : req.userId });
+                let applications = await Application.find({ eventCreatorId : req.userId });
 
                 return successResponse.getSuccessMessage(res, applications);
                 
