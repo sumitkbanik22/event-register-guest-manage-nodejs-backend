@@ -11,6 +11,9 @@ const ApplicationSchema = new Schema({
     eventType: {
         type: Number,
     },
+    eventName: {
+        type: String,
+    },
     eventDate: {
         type: Date,
     },

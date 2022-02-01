@@ -21,7 +21,7 @@ class ApplicationCreate {
                     return errorResponse.getErrorMessage(res, error.details[0].message);
                 }
 
-                let application = new Application(_.pick(req.body, ['eventCreatorId', 'eventType', 'eventDate', 'eventAddress', 'eventState', 'eventDistrict', 'eventGuestsInvited', 'eventOwner']));
+                let application = new Application(_.pick(req.body, ['eventCreatorId', 'eventType', 'eventName', 'eventDate', 'eventAddress', 'eventState', 'eventDistrict', 'eventGuestsInvited', 'eventOwner']));
 
                 await application.save();
 
@@ -30,12 +30,12 @@ class ApplicationCreate {
                     'Event Registered!',
                     {
                         name: application.eventOwner.firstName + (application.eventOwner.lastName ? ' ' + application.eventOwner.lastName : ''),
-                        msg: `Your event scheduled on ${moment(application.eventDate).format('DD/MM/YYYY')} is registered!!!`
+                        msg: `Your event - ${application.eventName}, scheduled on ${moment(application.eventDate).format('DD/MM/YYYY')} is registered!!!`
                     },
                     './templates/eventRegistered.handlebars'
                 );
 
-                return successResponse.getSuccessMessage(res, _.pick(application, ['_id', 'eventCreatorId', 'eventType', 'eventDate', 'eventAddress', 'eventState', 'eventDistrict', 'eventGuestsInvited', 'eventOwner']));
+                return successResponse.getSuccessMessage(res, _.pick(application, ['_id', 'eventCreatorId', 'eventType', 'eventName', 'eventDate', 'eventAddress', 'eventState', 'eventDistrict', 'eventGuestsInvited', 'eventOwner']));
 
 
             } else {
@@ -54,6 +54,7 @@ function validateCreateApplicationReq(req) {
     const schema = Joi.object({
         eventCreatorId: Joi.required(),
         eventType: Joi.number().required(),
+        eventName: Joi.string().required(),
         eventDate: Joi.date().required(),
         eventAddress: Joi.string().required(),
         eventState: Joi.object().required(),
