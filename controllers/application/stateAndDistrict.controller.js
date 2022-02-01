@@ -17,8 +17,6 @@ class StateAndDistrict {
 
                 const states = await State.find({});
 
-                console.log(states);
-
                 return successResponse.getSuccessMessage(res, states);
 
             } else {
