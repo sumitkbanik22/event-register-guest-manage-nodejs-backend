@@ -9,6 +9,8 @@ const HTTPErrors = require('http-errors');
 const errorHandler = require('./utils/errorHandler');
 const apiRoutes = require("./routes/api");
 
+global.__basedir = __dirname;
+
 const app = express();
 
 // Implement CORS
@@ -26,7 +28,7 @@ app.listen(PORT, () => {
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
