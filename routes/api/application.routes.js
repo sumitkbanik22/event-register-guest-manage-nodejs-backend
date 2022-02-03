@@ -6,6 +6,7 @@ const stateAndDistrictController = require('../../controllers/application/stateA
 const applicationController = require('../../controllers/application/createApplication.controller');
 const applicationOperationsController = require('../../controllers/application/applicationOperations.controller');
 const fileUploadController = require('../../controllers/application/fileUpload.controller');
+const csvFileOperationsController = require('../../controllers/application/csvFileOperations.controller');
 
 const authmiddleware = require("../../middlewares/auth.middleware");
 const fileUploadMiddleware = require("../../middlewares/uploads.middleware")
@@ -18,5 +19,6 @@ router.post('/addEvent', applicationController.createApplication);
 router.get('/index', applicationOperationsController.applicationIndex);
 router.post('/document/upload', fileUploadMiddleware, fileUploadController.upload);
 router.get('/document/download/:fileName', fileUploadController.downloadFile);
+router.get('/fetchCSVContent', csvFileOperationsController.parseCSVFile);
 
 module.exports = router;

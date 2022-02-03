@@ -1,0 +1,100 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Event Register And Guest Manage during CoVID-19 project",
+      "description": "Event Register And Guest Manage during CoVID-19 project application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "User",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http", "https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/api/user/register": {
+          "post": {
+            "tags": ["Users"],
+            "description": "Register new user in system",
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "User that we want to register",
+                "schema": {
+                    "properties": {
+                        "firstName": {
+                            "type": "integer",
+                            "example": "Joe"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Smith"
+                        },
+                        "email": {
+                            "type": "string",
+                            "example": "joe.smithtest@yopmail.com"
+                        },
+                        "phone": {
+                            "type": "string",
+                            "example": "+918999562200"
+                        },
+                        "password": {
+                            "type": "string",
+                            "example": "password123"
+                        },
+                        "userRole": {
+                            "type": "number",
+                            "example": 1
+                        }
+                    }
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New user is created",
+                "schema": {
+                    "properties": {
+                        "firstName": {
+                            "type": "integer",
+                            "example": "Joe"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Smith"
+                        },
+                        "email": {
+                            "type": "string",
+                            "example": "joe.smithtest@yopmail.com"
+                        },
+                        "phone": {
+                            "type": "string",
+                            "example": "+918999562200"
+                        },
+                        "password": {
+                            "type": "string",
+                            "example": "$2b$10$FvNujKPInpVMb9CWT45n/uA/hAxatfYv0VPqrB7dUWMJ7QONBjRwm"
+                        },
+                        "userRole": {
+                            "type": "number",
+                            "example": 1
+                        }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+  }
