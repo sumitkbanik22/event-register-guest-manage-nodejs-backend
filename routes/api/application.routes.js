@@ -20,5 +20,6 @@ router.get('/index', applicationOperationsController.applicationIndex);
 router.post('/document/upload', fileUploadMiddleware, fileUploadController.upload);
 router.get('/document/download/:fileName', fileUploadController.downloadFile);
 router.get('/fetchCSVContent', csvFileOperationsController.parseCSVFile);
+router.get('/index/pagination', applicationOperationsController.applicationIndexWithPagination);
 
 module.exports = router;
