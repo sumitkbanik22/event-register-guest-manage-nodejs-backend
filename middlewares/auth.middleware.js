@@ -7,7 +7,7 @@ class AuthMiddleware {
         
         try {
 
-            if (!req.url.includes('/document/download/')) {
+            if (!req.url.includes('/document/download/') && !(req.url.includes('/downloadApplicationCSV'))) {
 
                 const token = req.body.token || req.query.token || req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null || req.headers['x-access-token'] ? req.headers['x-access-token'].split(' ')[1] : null;
 

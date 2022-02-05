@@ -21,5 +21,6 @@ router.post('/document/upload', fileUploadMiddleware, fileUploadController.uploa
 router.get('/document/download/:fileName', fileUploadController.downloadFile);
 router.get('/fetchCSVContent', csvFileOperationsController.parseCSVFile);
 router.get('/index/paginationAndSearching', applicationOperationsController.applicationIndexWithPaginationAndSearching);
+router.get('/downloadApplicationCSV', csvFileOperationsController.downloadCSVFile);
 
 module.exports = router;
