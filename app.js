@@ -42,24 +42,27 @@ app.use(function (req, res, next) {
 // routes
 app.use('/api', apiRoutes);
 
+// for viewing uploaded files
+app.use('/uploads', express.static(__dirname + '/uploads/'));
+
 // This should be the last route else any after it wont work
 app.use('*', (req, res) => {
     res.status(404).json({
-      success: 'false',
-      message: 'Page not found',
-      error: {
-        statusCode: 404,
-        message: 'You reached a route that is not defined on this server',
-      },
+        success: 'false',
+        message: 'Page not found',
+        error: {
+            statusCode: 404,
+            message: 'You reached a route that is not defined on this server',
+        },
     });
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     next(HTTPErrors(404));
 });
 
 // Error Handler - Log errors
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     errorHandler.handleError(err, req, res, next);
 });
